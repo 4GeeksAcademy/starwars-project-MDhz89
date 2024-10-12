@@ -1,0 +1,11 @@
+.people-container {
+    padding: 20px; /* Espaciado alrededor del contenedor */
+}
+
+.people-card {
+    transition: transform 0.2s; /* Animación suave al pasar el mouse */
+}
+
+.people-card:hover {
+    transform: scale(1.05); /* Efecto de aumento al pasar el mouse */
+}

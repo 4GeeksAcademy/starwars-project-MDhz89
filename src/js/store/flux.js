@@ -12,30 +12,44 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			people: [], // Aquí almacenaremos los datos de las personas
+			favorites: [] // Aquí almacenaremos los favoritos
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
+			// Usar getActions para llamar a una función dentro de otra
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
+			loadPeople: async () => {
+				try {
+					const response = await fetch("https://www.swapi.tech/api/people");
+					const data = await response.json();
+					setStore({ people: data.results }); // Almacena los resultados en el store
+				} catch (error) {
+					console.error("Error fetching people:", error);
+				}
+			},
+			addFavorite: (favorite) => {
+				const store = getStore();
+				setStore({ favorites: [...store.favorites, favorite] }); // Agrega a favoritos
+			},
+			removeFavorite: (id) => {
+				const store = getStore();
+				setStore({ favorites: store.favorites.filter(fav => fav.id !== id) }); // Elimina de favoritos
 			},
 			changeColor: (index, color) => {
-				//get the store
+				// Obtén el store
 				const store = getStore();
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
+				// Debemos recorrer todo el array demo para buscar el índice respectivo
+				// y cambiar su color
 				const demo = store.demo.map((elm, i) => {
 					if (i === index) elm.background = color;
 					return elm;
 				});
 
-				//reset the global store
+				// Reinicia el store global
 				setStore({ demo: demo });
 			}
 		}
