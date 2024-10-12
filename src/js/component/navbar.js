@@ -11,6 +11,9 @@ export const Navbar = () => {
 				<Link to="/people">
 					<button className="btn btn-primary">People</button>
 				</Link>
+				<Link to="/vehicles">
+					<button className="btn btn-primary">Vehicles</button>
+				</Link>
 				<Link to="/demo">
 					<button className="btn btn-primary">Check the Context in action</button>
 				</Link>

@@ -14,6 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 			people: [], // Aquí almacenaremos los datos de las personas
+			vehicles: [], // Aquí almacenaremos los datos de los vehículos
 			favorites: [] // Aquí almacenaremos los favoritos
 		},
 		actions: {
@@ -23,11 +24,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			loadPeople: async () => {
 				try {
-					const response = await fetch("https://www.swapi.tech/api/people");
+					const response = await fetch("https://swapi.dev/api/people");
 					const data = await response.json();
+					console.log(data);
+					
 					setStore({ people: data.results }); // Almacena los resultados en el store
 				} catch (error) {
 					console.error("Error fetching people:", error);
+				}
+			},
+			loadVehicles: async () => {
+				try {
+					const response = await fetch("https://swapi.dev/api/vehicles");
+					const data = await response.json();
+					setStore({ vehicles: data.results }); // Almacena los resultados en el store
+				} catch (error) {
+					console.error("Error fetching vehicles:", error);
 				}
 			},
 			addFavorite: (favorite) => {
@@ -39,17 +51,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ favorites: store.favorites.filter(fav => fav.id !== id) }); // Elimina de favoritos
 			},
 			changeColor: (index, color) => {
-				// Obtén el store
 				const store = getStore();
 
-				// Debemos recorrer todo el array demo para buscar el índice respectivo
-				// y cambiar su color
 				const demo = store.demo.map((elm, i) => {
 					if (i === index) elm.background = color;
 					return elm;
 				});
 
-				// Reinicia el store global
 				setStore({ demo: demo });
 			}
 		}
