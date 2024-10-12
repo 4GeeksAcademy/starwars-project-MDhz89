@@ -4,6 +4,7 @@ import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { Card, Button, Col } from "react-bootstrap";
 import { Planets } from "./planets"; // Importar Planets
+import { Link } from "react-router-dom";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -38,6 +39,9 @@ export const Home = () => {
 									Gender: {person.gender}<br />
 									Hair Color: {person.hair_color}<br />
 								</Card.Text>
+								<Link to={`/detail/people/${index}`}>
+									<button type="button" className="btn btn-primary">more info</button>
+								</Link>
 								<Button
 									variant="primary"
 									onClick={() => actions.addFavorite({ id: person.url.split('/').pop(), ...person })}
@@ -56,7 +60,7 @@ export const Home = () => {
 					<Col key={index} sm={4} className="mb-3">
 						<Card>
 							<img 
-								src={`https://starwars-visualguide.com/assets/img/vehicles/${index + 1}.jpg`} 
+								src={`https://starwars-visualguide.com/assets/img/vehicles/${index}.jpg`} 
 								className="card-img-top card-img-small" 
 								alt={vehicle.name} 
 								onError={(e) => { 
@@ -72,6 +76,9 @@ export const Home = () => {
 									Manufacturer: {vehicle.manufacturer}<br />
 									Cost: {vehicle.cost_in_credits} credits
 								</Card.Text>
+								<Link to={`/detail/vehicle/${index}`}>
+									<button type="button" className="btn btn-primary">more info</button>
+								</Link>
 								<Button
 									variant="primary"
 									onClick={() => actions.addFavorite({ id: vehicle.url.split('/').pop(), ...vehicle })}
@@ -90,7 +97,7 @@ export const Home = () => {
 					<Col key={index} sm={4} className="mb-3">
 						<Card>
 						    <img 
-								src={`https://starwars-visualguide.com/assets/img/planets/${index + 1}.jpg`} 
+								src={`https://starwars-visualguide.com/assets/img/planets/${index}.jpg`} 
 								className="card-img-top card-img-small" 
 								alt={planet.name} 
 								onError={(e) => { 
@@ -107,6 +114,9 @@ export const Home = () => {
 									Gravity: {planet.gravity}<br />
 
 								</Card.Text>
+								<Link to={`/detail/planet/${index}`}>
+									<button type="button" className="btn btn-primary">more info</button>
+								</Link>
 								<Button
 									variant="primary"
 									onClick={() => actions.addFavorite({ id: planet.url.split('/').pop(), ...planet })}

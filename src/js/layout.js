@@ -12,6 +12,7 @@ import { Footer } from "./component/footer";
 import { People } from "./views/people";
 import { Vehicles } from "./views/vehicles";
 import { Planets } from "./views/planets";
+import { Detail } from "./views/detail";
 
 //create your first component
 const Layout = () => {
@@ -30,6 +31,7 @@ const Layout = () => {
 						<Route path="/people" element={<People />} />
 						<Route path="/vehicles" element={<Vehicles />} />
 						<Route path="/planets" element={<Planets />} />
+						<Route path="/detail/:type/:id" element={<Detail />} />
 						<Route path="/single/:theid" element={<Single />} />
 						<Route path="*" element={<h1>Not found!</h1>} />
 					</Routes>
