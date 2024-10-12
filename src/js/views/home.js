@@ -40,13 +40,14 @@ export const Home = () => {
 									Hair Color: {person.hair_color}<br />
 								</Card.Text>
 								<Link to={`/detail/people/${index}`}>
-									<button type="button" className="btn btn-primary">more info</button>
+									<button type="button" className="btn btn-primary float-start">more info</button>
 								</Link>
 								<Button
+									type="button" className="btn btn-warning float-end"
 									variant="primary"
 									onClick={() => actions.addFavorite({ id: person.url.split('/').pop(), ...person })}
 								>
-									Add to Favorites
+									<i className="fa fa-heart"></i>
 								</Button>
 							</Card.Body>
 						</Card>
