@@ -22,12 +22,12 @@ export const Vehicles = () => {
 						<Card.Body>
 							<Card.Title>{vehicle.name}</Card.Title>
 							<p>Model: {vehicle.model}</p>
-							{/* <Card.Text>
+							<Card.Text>
 								Model: {vehicle.model}<br />
 								Class: {vehicle.vehicle_class}<br />
 								Manufacturer: {vehicle.manufacturer}<br />
 								Cost: {vehicle.cost_in_credits} credits
-							</Card.Text> */}
+							</Card.Text>
 							<Button
 								variant="primary"
 								onClick={() => actions.addFavorite({ id: vehicle.url.split('/').pop(), ...vehicle })}

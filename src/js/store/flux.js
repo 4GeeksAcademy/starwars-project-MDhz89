@@ -15,6 +15,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 			people: [], // Aquí almacenaremos los datos de las personas
 			vehicles: [], // Aquí almacenaremos los datos de los vehículos
+			planets: [], // Aquí almacenaremos los datos de los planetas
 			favorites: [] // Aquí almacenaremos los favoritos
 		},
 		actions: {
@@ -26,8 +27,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 					const response = await fetch("https://swapi.dev/api/people");
 					const data = await response.json();
-					console.log(data);
-					
 					setStore({ people: data.results }); // Almacena los resultados en el store
 				} catch (error) {
 					console.error("Error fetching people:", error);
@@ -40,6 +39,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({ vehicles: data.results }); // Almacena los resultados en el store
 				} catch (error) {
 					console.error("Error fetching vehicles:", error);
+				}
+			},
+			loadPlanets: async () => {
+				try {
+					const response = await fetch("https://swapi.dev/api/planets");
+					const data = await response.json();
+					setStore({ planets: data.results }); // Almacena los resultados en el store
+				} catch (error) {
+					console.error("Error fetching planets:", error);
 				}
 			},
 			addFavorite: (favorite) => {
