@@ -54,9 +54,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 				setStore({ favorites: [...store.favorites, favorite] }); // Agrega a favoritos
 			},
-			removeFavorite: (id) => {
+			removeFavorite: (name) => {
+				console.log("name", name);
+				
 				const store = getStore();
-				setStore({ favorites: store.favorites.filter(fav => fav.id !== id) }); // Elimina de favoritos
+				setStore({ favorites: store.favorites.filter(fav => fav.name !== name) }); // Filtra por nombre
 			},
 			changeColor: (index, color) => {
 				const store = getStore();

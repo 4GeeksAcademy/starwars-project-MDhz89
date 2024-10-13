@@ -15,6 +15,9 @@ export const Home = () => {
 		actions.loadPlanets(); // Cargar planetas al montar el componente
 	}, []); // El arreglo vacío asegura que esto se ejecute solo una vez
 
+	console.log("store",store);
+	
+
 	return (
 		<div className="text-center mt-5">
 			<h2>People:</h2>
