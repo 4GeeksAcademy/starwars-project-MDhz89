@@ -78,13 +78,14 @@ export const Home = () => {
 									Cost: {vehicle.cost_in_credits} credits
 								</Card.Text>
 								<Link to={`/detail/vehicle/${index}`}>
-									<button type="button" className="btn btn-primary">more info</button>
+									<button type="button" className="btn btn-primary float-start">more info</button>
 								</Link>
 								<Button
+									type="button" className="btn btn-warning float-end"
 									variant="primary"
 									onClick={() => actions.addFavorite({ id: vehicle.url.split('/').pop(), ...vehicle })}
 								>
-									Add to Favorites
+									<i className="fa fa-heart"></i>
 								</Button>
 							</Card.Body>
 						</Card>
@@ -116,13 +117,14 @@ export const Home = () => {
 
 								</Card.Text>
 								<Link to={`/detail/planet/${index}`}>
-									<button type="button" className="btn btn-primary">more info</button>
+									<button type="button" className="btn btn-primary float-start">more info</button>
 								</Link>
 								<Button
+									type="button" className="btn btn-warning float-end"
 									variant="primary"
 									onClick={() => actions.addFavorite({ id: planet.url.split('/').pop(), ...planet })}
 								>
-									Add to Favorites
+									<i className="fa fa-heart"></i>
 								</Button>
 							</Card.Body>
 						</Card>
