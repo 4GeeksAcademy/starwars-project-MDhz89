@@ -25,7 +25,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			loadPeople: async () => {
 				try {
-					const response = await fetch("https://swapi.dev/api/people");
+					const response = await fetch("https://www.swapi.tech/api/people");
 					const data = await response.json();
 					setStore({ people: data.results }); // Almacena los resultados en el store
 				} catch (error) {
@@ -34,7 +34,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			loadVehicles: async () => {
 				try {
-					const response = await fetch("https://swapi.dev/api/vehicles");
+					const response = await fetch("https://www.swapi.tech/api/vehicles/");
 					const data = await response.json();
 					setStore({ vehicles: data.results }); // Almacena los resultados en el store
 				} catch (error) {
@@ -43,7 +43,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			loadPlanets: async () => {
 				try {
-					const response = await fetch("https://swapi.dev/api/planets");
+					const response = await fetch("https://www.swapi.tech/api/planets/");
 					const data = await response.json();
 					setStore({ planets: data.results }); // Almacena los resultados en el store
 				} catch (error) {
@@ -52,8 +52,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			addFavorite: (favorite) => {
 				const store = getStore();
-				setStore({ favorites: [...store.favorites, favorite] }); // Agrega a favoritos
+			
+				// Verifica si ya existe un favorito con el mismo ID (si favorite es un objeto con un ID)
+				if (!store.favorites.some(item => item.id === favorite.id)) {
+					setStore({ favorites: [...store.favorites, favorite] });
+				}
 			},
+			
+			
 			removeFavorite: (name) => {
 				console.log("name", name);
 				
